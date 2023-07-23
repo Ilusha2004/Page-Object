@@ -12,3 +12,6 @@ class LoginPageLocators():
     REGISTRATION_FORM_USERNAME= (By.CSS_SELECTOR, "#id_registration-email.form-control")
     REGISTRATION_FORM_PASSWORD = (By.CSS_SELECTOR, "#id_registration-password1.form-control")
     REGISTRATION_FORM_REPEAT_PASSWORD = (By.CSS_SELECTOR, "#id_registration-password2.form-control")
+
+class PurchaseLocators():
+    ADD_TO_PURCHASE = (By.CSS_SELECTOR, "button.btn.btn-lg.btn-primary.btn-add-to-basket")
