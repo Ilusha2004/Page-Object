@@ -15,13 +15,12 @@ class ProductPage(BasePage):
      def should_be_show_button(self):
           assert self.is_element_present(*PurchaseLocators.ADD_TO_PURCHASE), "Element isn't exist"
 
-
      # метод для добавления в корзину
      def should_be_added_to_basket(self):
           button = self.browser.find_element(*PurchaseLocators.ADD_TO_PURCHASE)
           button.click()
           self.solve_quiz_and_get_code()
-          time.sleep(8)
+          time.sleep(5)
 
      # Сообщение о том, что товар добавлен в корзину. Название товара в сообщении должно совпадать с тем товаром, который вы действительно добавили.
      def should_be_noticed_about_element_has_been_added(self):
