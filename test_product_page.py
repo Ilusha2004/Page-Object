@@ -47,30 +47,26 @@ from .pages.product_page import ProductPage
 #      prod_page.open()
 #      prod_page.should_added_tool_and_check_with_is_disappeared()
 
-def test_guest_should_see_login_link_on_product_page(browser):
-     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
-     page = ProductPage(browser, link)
-     page.open()
-     page.should_be_login_link()
+# def test_guest_should_see_login_link_on_product_page(browser):
+#      link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
+#      page = ProductPage(browser, link)
+#      page.open()
+#      page.should_be_login_link()
 
-def test_guest_can_go_to_login_page_from_product_page(browser):
-     #product page
+# def test_guest_can_go_to_login_page_from_product_page(browser):
+#      # product page
+#      link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/"
+#      page = ProductPage(browser, link)
+#      page.open()
+#      page.go_to_login_page()
+
+def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
+     # Product list
      link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/"
-     page = ProductPage(browser, link)
-     page.open()
-     page.go_to_login_page()
-
-# test_guest_cant_see_product_in_basket_opened_from_main_page:
-
-     # Гость открывает главную страницу
-     # Переходит в корзину по кнопке в шапке сайта
-     # Ожидаем, что в корзине нет товаров
-     # Ожидаем, что есть текст о том что корзина пуста
-     # В файле test_product_page.py добавьте тест с названием
-
-# test_guest_cant_see_product_in_basket_opened_from_product_page:
-
      # Гость открывает страницу товара
      # Переходит в корзину по кнопке в шапке
      # Ожидаем, что в корзине нет товаров
      # Ожидаем, что есть текст о том что корзина пуста
+     page = ProductPage(browser, link)
+     page.open()
+     pass
