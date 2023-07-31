@@ -1,4 +1,4 @@
-import time
+import time, pytest
 from selenium.webdriver.support import expected_conditions as EC
 from .base_page import BasePage
 from .locators import PurchaseLocators
@@ -10,6 +10,11 @@ class ProductPage(BasePage):
           self.should_be_added_to_basket()
           self.should_be_noticed_about_element_has_been_added()
           self.should_be_notices_price_in_basket()
+
+     def should_be_tested(self):
+          self.test_guest_cant_see_success_message_after_adding_product_to_basket()
+          self.test_guest_cant_see_success_message()
+          self.test_message_disappeared_after_adding_product_to_basket()
 
      # метод проверки кноки добавить корзину
      def should_be_show_button(self):
@@ -24,7 +29,6 @@ class ProductPage(BasePage):
 
      # Сообщение о том, что товар добавлен в корзину. Название товара в сообщении должно совпадать с тем товаром, который вы действительно добавили.
      def should_be_noticed_about_element_has_been_added(self):
-          self.browser.implicitly_wait(10)
           print(self.is_element_present(*PurchaseLocators.NAME_STUFF))
           name_stuff = self.browser.find_element(*PurchaseLocators.NAME_STUFF)
           print(f"Element has been added in basket: {name_stuff.text}")
@@ -35,29 +39,19 @@ class ProductPage(BasePage):
      # Сообщение со стоимостью корзины. Стоимость корзины совпадает с ценой товара.
      def should_be_notices_price_in_basket(self):
           print("Checking prices")
-          self.browser.implicitly_wait(10)
           price_in_basket = self.browser.find_element(*PurchaseLocators.BASKET_PRICE)
           price_element = self.browser.find_element(*PurchaseLocators.ELEMENT_PRICE)
           print(f"Price in basket: {price_in_basket.text}\nPrice element: {price_element.text}")
           assert price_in_basket.text == price_element.text, "Prices aren't compable"
 
-     # def should_be_elements_in_basket(self):
-          # print(self.is_element_present(*PurchaseLocators.NAME_STUFF))
-          # name_stuff = self.browser.find_element(*PurchaseLocators.NAME_STUFF)
-          # name = name_stuff.text
-          # print(f"Element has been added in basket: {name_stuff.text}")
-          # time.sleep(5)
-          # self.browser.find_element(*PurchaseLocators.VIEW_BASKET).click()
-          # print(self.is_element_present(*PurchaseLocators.VIEW_BASKET))
-          # time.sleep(15)
-          # print("list of books: ")
-          # elements_in_basket = self.browser.find_elements(*PurchaseLocators.NAME_IN_BASKET)
-          # print(*elements_in_basket)
-          # check = False
+     def should_be_added_tool_and_check(self):
+          self.browser.find_element(*PurchaseLocators.ADD_TO_PURCHASE).click()
+          assert self.is_not_element_present(*PurchaseLocators.HAS_BEEN_ADDED), "Element was shown"
 
-          # for elements in elements_in_basket:
-          #      if str(elements.text) == name:
-          #           print(f"Element {name} was found")
-          #           check = True
+     def should_be_check(self):
+          assert self.is_not_element_present(*PurchaseLocators.HAS_BEEN_ADDED), "Element was shown"
 
-          # assert check, "Element wasn't found"
+     def should_added_tool_and_check_with_is_disappeared(self):
+          self.browser.find_element(*PurchaseLocators.ADD_TO_PURCHASE).click()
+          time.sleep(2)
+          assert self.is_disappeared(*PurchaseLocators.HAS_BEEN_ADDED), "Element was shown"
