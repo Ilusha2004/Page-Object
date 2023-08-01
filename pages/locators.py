@@ -22,6 +22,8 @@ class PurchaseLocators():
     ELEMENT_PRICE =   (By.CSS_SELECTOR, "p.price_color")
     HAS_BEEN_ADDED =  (By.CSS_SELECTOR, "#messages :nth-child(1) .alertinner strong")
     BASKET_PRICE =    (By.CSS_SELECTOR, ".alertinner p strong")
+    BASKET_CONTENT =  (By.XPATH, '//*[@id="content_inner"]/p/text()')
+    BASKET_ITEMS =    (By.CLASS_NAME, "basket-items")
 
 class BasePageLocators():
     LOGIN_LINK =         (By.CSS_SELECTOR, "#login_link")

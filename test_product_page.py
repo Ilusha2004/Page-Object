@@ -1,6 +1,7 @@
 import pytest
 import time
 from .pages.product_page import ProductPage
+from .pages.basket_page import BasketPage
 
 # @pytest.mark.parametrize('link', ["http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0",
 #                                   "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer1",
@@ -69,4 +70,8 @@ def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
      # Ожидаем, что есть текст о том что корзина пуста
      page = ProductPage(browser, link)
      page.open()
-     pass
+     page.go_to_basket()
+
+     new_page = BasketPage(browser=page.browser, url=page.url)
+     new_page.should_basket_is_empty()
+     new_page.should_be_send_basket_is_empty()

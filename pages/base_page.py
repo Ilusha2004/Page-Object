@@ -2,7 +2,8 @@ import math, time
 from selenium.common.exceptions import NoSuchElementException, NoAlertPresentException, TimeoutException
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from .locators import BasePageLocators
+from .languages import languages
+from .locators import *
 
 class BasePage():
      def __init__(self, browser, url, timeout=10):
@@ -12,6 +13,9 @@ class BasePage():
 
      def open(self):
           self.browser.get(self.url)
+
+     def go_to_basket(self):
+          self.browser.find_element(*PurchaseLocators.VIEW_BASKET).click()
 
      def go_to_login_page(self):
           link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
@@ -28,7 +32,7 @@ class BasePage():
                return False
           return True
 
-     # False if element won't show
+     # False if element will show
      def is_disappeared(self, how, what, timeout=4):
           try:
                WebDriverWait(self.browser, timeout, 1, TimeoutException).\
@@ -53,7 +57,7 @@ class BasePage():
           answer = str(math.log(abs((12 * math.sin(float(x))))))
           alert.send_keys(answer)
           alert.accept()
-          time.sleep(12)
+          # time.sleep(12)
           try:
                alert = self.browser.switch_to.alert
                alert_text = alert.text
