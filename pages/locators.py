@@ -12,6 +12,7 @@ class LoginPageLocators():
     REGISTRATION_FORM_USERNAME =        (By.CSS_SELECTOR, "#id_registration-email.form-control")
     REGISTRATION_FORM_PASSWORD =        (By.CSS_SELECTOR, "#id_registration-password1.form-control")
     REGISTRATION_FORM_REPEAT_PASSWORD = (By.CSS_SELECTOR, "#id_registration-password2.form-control")
+    REGISTRATION_VALID =                (By.CLASS_NAME, "alert alert-success fade in")
 
 class PurchaseLocators():
     ADD_TO_PURCHASE = (By.CSS_SELECTOR, "button.btn.btn-lg.btn-primary.btn-add-to-basket")
@@ -28,3 +29,4 @@ class PurchaseLocators():
 class BasePageLocators():
     LOGIN_LINK =         (By.CSS_SELECTOR, "#login_link")
     LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
+    USER_ICON = (By.CSS_SELECTOR, ".icon-user")
